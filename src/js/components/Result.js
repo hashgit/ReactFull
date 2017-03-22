@@ -21,7 +21,7 @@ export default class Result extends React.Component {
   hasResult(data) {
     console.log("Result");
     console.log(data);
-    this.setState({ ResultAvailable: true, ResultName: data.Name, ResultAmount: data.Text });
+    this.setState({ ResultAvailable: true, Failed: false, ResultName: data.Name, ResultAmount: data.Text });
   }
 
   failed() {
@@ -33,15 +33,21 @@ export default class Result extends React.Component {
     if (this.state.ResultAvailable) {
       if (this.state.Failed) {
         return (
-        <div>
-          Conversion failed
-        </div>
+          <div class="container">
+            <div class="row">
+              Conversion failed
+            </div>
+          </div>
         );
       } else {
         return (
-          <div class="col-md-12">
-            <p>Name: {this.state.ResultName}</p>
-            <p>Amount in Text: {this.state.ResultAmount}</p>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <p>Name: {this.state.ResultName}</p>
+                <p>Amount in Text: {this.state.ResultAmount}</p>
+              </div>
+            </div>
           </div>
         );
       }
