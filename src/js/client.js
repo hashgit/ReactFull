@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
-import Form from "./components/Form";
-import Result from "./components/Result";
-import Layout from "./components/Layout";
+import Layout from "./pages/Layout";
+import Form from "./pages/Form";
+import Result from "./pages/Result";
 
 const app = document.getElementById('app');
+
 ReactDOM.render(
-        <Router history={hashHistory}>
-            <Route Path="/" component={Layout}>
-            </Route>
-        </Router>
-, app);
+  <Router history={hashHistory}>
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Form}></IndexRoute>
+      <Route path="result" name="result" component={Result}></Route>
+    </Route>
+  </Router>,
+app);
