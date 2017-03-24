@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 import ConversionStore from "../stores/ConversionStore";
 
@@ -8,40 +9,31 @@ export default class Result extends React.Component {
     this.state = { ResultAvailable: false };
   }
 
-  componentWillMount() {
-    ConversionStore.on("success", this.hasResult.bind(this));
-    ConversionStore.on("failed", this.failed.bind(this));
-  }
-
-  componentWillUnmount() {
-    ConversionStore.removeListener("success");
-    ConversionStore.removeListener("failed");
-  }
-
-  hasResult(data) {
-    console.log("Result");
-    console.log(data);
-    this.setState({ ResultAvailable: true, Failed: false, ResultName: data.Name, ResultAmount: data.Text });
-  }
-
-  failed() {
-    console.log("Failed");
-    this.setState({ ResultAvailable: true, Failed: true });
-  }
-
   render() {
     if (this.state.ResultAvailable) {
       if (this.state.Failed) {
         return (
           <div class="container">
             <div class="row">
-              Conversion failed
+              <div class="col-md-12">
+                <Link to="/">&lt;- Back</Link>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                Conversion failed
+              </div>
             </div>
           </div>
         );
       } else {
         return (
           <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <Link to="/">&lt;- Back</Link>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12">
                 <p>Name: {this.state.ResultName}</p>
@@ -53,6 +45,11 @@ export default class Result extends React.Component {
       }
     } else {
       return (<div>
+                    <div class="row">
+              <div class="col-md-12">
+                <Link to="/">&lt;- Back</Link>
+              </div>
+            </div>
       </div>);
     }
   }

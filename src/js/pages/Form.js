@@ -23,7 +23,11 @@ class Form extends React.Component {
   hasResult(data) {
     console.log("Result");
     console.log(data);
-    this.context.router.push("/result", { ResultAvailable: true, Failed: false, ResultName: data.Name, ResultAmount: data.Text });
+    this.context.router.push(
+      {
+        pathname: "/result",
+        state: { ResultAvailable: true, Failed: false, ResultName: data.Name, ResultAmount: data.Text }
+      });
     // this.setState({ ResultAvailable: true, Failed: false, ResultName: data.Name, ResultAmount: data.Text });
   }
 
